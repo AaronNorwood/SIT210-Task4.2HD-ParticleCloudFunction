@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Traffic Light Simulator</title>
+    <h1>Traffic Light Simulator</h1>
+</head>
+
+<body>
+    <style>
+        .buttonGreen:hover{background-color: #0d500f !important;;}
+        .buttonGreen:active {
+            background-color: #0d500f;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+        .buttonOrange:hover{background-color: #926503 !important;}
+        .buttonOrange:active {
+            background-color: #926503;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+        .buttonRed:hover{background-color: #830b07 !important;}
+        .buttonRed:active {
+            background-color: #830b07;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+    </style>
+    <p>Traffic light Simulator using Particle Cloud functions</p>
+    <p>Press on a button below to send a signal to the attached Argon to toggle the corresponding light</p>
+    
+    <button class = "buttonGreen" style="background-color: green; font-size: 20px; border-radius: 4px;" onclick="toggleGreen('on')">Green Light</button>
+    <button class = "buttonOrange" style="background-color: orange; font-size: 20px; border-radius: 4px" onclick="toggleOrange('on')">Orange Light</button>
+    <button class = "buttonRed" style="background-color: red; font-size: 20px; border-radius: 4px" onclick="toggleRed('on')">Red Light</button>
+
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+
+    <script>
+        //toggles on the orange light via an api call
+        function toggleOrange(arg)
+        {
+            var data = {};
+            data.arg = arg;
+            $.post( "https://api.particle.io/v1/devices/e00fce68fd5724e43e223e63/toggleOrange?access_token=03975bdec9188bd252e4aa86853783010633e660", data, function( data ) {
+            });
+        }
+        //toggles on the red light via an api call
+        function toggleRed(arg)
+        {
+            var data = {};
+            data.arg = arg;
+            $.post( "https://api.particle.io/v1/devices/e00fce68fd5724e43e223e63/toggleRed?access_token=03975bdec9188bd252e4aa86853783010633e660", data, function( data ) {
+            });
+        }
+        //toggles on the green light via an api call
+        function toggleGreen(arg)
+        {
+            var data = {};
+            data.arg = arg;
+            $.post( "https://api.particle.io/v1/devices/e00fce68fd5724e43e223e63/toggleGreen?access_token=03975bdec9188bd252e4aa86853783010633e660", data, function( data ) {
+            });
+        }
+    </script>
+</body>
